@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 
 import com.udacity.chaithra.newsapp.R;
 
@@ -22,7 +23,7 @@ public class NewsAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return 10;
     }
 
     @Override
@@ -40,15 +41,13 @@ public class NewsAdapter extends BaseAdapter {
         if(convertView == null){
             convertView = mContext.getLayoutInflater().inflate(R.layout.activity_newslist_item, parent, false);
             ViewHolder holder = new ViewHolder();
-
+            holder.ivNewsItem = (ImageView) convertView.findViewById(R.id.img_newsitem_id);
             convertView.setTag(holder);
-        }else{
-            return convertView;
         }
-        return null;
+        return convertView;
     }
 
     class ViewHolder{
-
+        ImageView ivNewsItem;
     }
 }
