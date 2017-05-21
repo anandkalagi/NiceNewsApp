@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,8 +36,12 @@ public class NewsJsonStringParser {
                 resultObject.setId(jsonObject.getString("id"));
                 resultObject.setType(jsonObject.getString("type"));
                 resultObject.setSectionId(jsonObject.getString("sectionId"));
-                SimpleDateFormat dateFormat = new SimpleDateFormat();
-                resultObject.setWebPublicationDate(new Date());//jsonObject.getString("webPublicationDate")
+                try {
+                    String strData = jsonObject.getString("webPublicationDate").replaceAll("Z$", "+0000");
+                    Date date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").parse(strData);//yyyy-MM-dd'T'HH:mm:ssZ
+                    resultObject.setWebPublicationDate(date);//jsonObject.getString("webPublicationDate")
+                } catch (ParseException e) {
+                }
                 resultObject.setSectionName(jsonObject.getString("sectionName"));
                 resultObject.setWebTitle(jsonObject.getString("webTitle"));
                 resultObject.setWebUrl(jsonObject.getString("webUrl"));

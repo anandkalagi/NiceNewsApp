@@ -19,7 +19,7 @@ import java.nio.charset.Charset;
 
 public class HttpHelper {
     public static final String TAG = HttpHelper.class.getName();
-    private final String API_KEY = "86e4010e-154b-4443-be2a-87212886b13f";
+    public static final String API_KEY = "86e4010e-154b-4443-be2a-87212886b13f";
 
     public String QUERY_URL = "http://content.guardianapis.com/search?q=debates&api-key="+API_KEY;
 
