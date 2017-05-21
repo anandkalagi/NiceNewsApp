@@ -32,7 +32,12 @@ public class NewsGuardianLoader extends AsyncTaskLoader<String> {
     protected void onStartLoading() {
         Log.e(TAG,"called onStartLoading");
         httpHelper = new HttpHelper();
-        forceLoad();
+        if(Permissions.checkInternetConnection(mContext)){
+            forceLoad();
+        }else{
+            Toast.makeText(mContext, "Internet connection problem", Toast.LENGTH_SHORT).show();
+        }
+
         super.onStartLoading();
     }
 
@@ -42,11 +47,7 @@ public class NewsGuardianLoader extends AsyncTaskLoader<String> {
         String guardianJsonStr = null;
         URL url = httpHelper.createUrl(httpHelper.QUERY_URL);
         try {
-            if(Permissions.checkInternetConnection(mContext)){
                 guardianJsonStr =  httpHelper.makeHttpRequest(url);
-            }else{
-                Toast.makeText(mContext, "Internet connection problem", Toast.LENGTH_SHORT).show();
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }
