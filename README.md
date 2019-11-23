@@ -1,0 +1,2 @@
+# NiceNewsApp
+initial commit
